@@ -32,6 +32,7 @@ library
                  , Wrecker.Logger
                  , Network.Wreq.Wrecker
                  , Network.Wreq.Wrecker.API
+                 , Network.Websockets.Wrecker
 
   build-depends: base                   >= 4.6 && < 5
                , aeson                  >= 0.7
@@ -81,6 +82,7 @@ library
                , vector                 >= 0.10.12
                , vty                    >= 5.11
                , wreq                   >= 0.5.0
+               , websockets             >= 0.10
                , authenticate-oauth     >= 1.5.1.2
                , threads-extras         >= 0.1.0.2
                , tdigest                >= 0.1
@@ -129,6 +131,33 @@ test-suite wrecker-test
                , transformers
   ghc-options: -O2 -Wall -fno-warn-unused-do-bind -threaded  -pgmL markdown-unlit -rtsopts "-with-rtsopts=-N -I0 -qg"
   default-language:    Haskell2010
+
+executable ws-wreck
+  hs-source-dirs:      ws-app
+  main-is:             Main.hs
+  build-depends:       base
+                     , aeson
+                     , aeson-qq
+                     , case-insensitive
+                     , containers
+                     , common-utilities
+                     , websockets
+                     , lens-aeson
+                     , scientific
+                     , wrecker
+                     , markdown-unlit
+                     , network
+                     , optparse-applicative
+                     , http-client
+                     , http-client-tls
+                     , wreq
+                     , lens
+                     , text
+
+  cpp-options: -D_SERVER_IS_MAIN_
+  ghc-options: -O2 -Wall -fno-warn-unused-do-bind -threaded -rtsopts "-with-rtsopts=-N -I0 -qg"
+  default-language:    Haskell2010
+
 
 source-repository head
     type:     git

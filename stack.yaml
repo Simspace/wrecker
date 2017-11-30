@@ -7,7 +7,23 @@ docker:
   auto-pull: true
   enable: false
   repo: fpco/stack-build
+packages:
+- '.'
+- location:
+    git: git@github.com:Simspace/websockets.git
+    commit: 77d1d66e67a6854b9d1eb0465a2325383ad6819d
+  extra-dep: true
+- location:
+    git: git@github.com:tfausak/wuss.git
+    commit: 0ba5a8e15bbdb5810d7676a049844a1e16987658
+  extra-dep: true
+- location:
+    git: git@github.com:Simspace/common-utilities.git
+    commit: 800197d22a46a70f8446ee4c6b156ef93fb7ad12
+  subdirs:
+    - haskell
+  extra-dep: true
 extra-deps:
 - threads-extras-0.1.0.2
 - unagi-chan-0.4.0.0
-resolver: lts-9.1
+resolver: lts-9.10
